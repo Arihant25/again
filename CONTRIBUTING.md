@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to Streaks!
+Thanks for your interest in contributing to Again!
 
 ## Getting Started
 
@@ -22,4 +22,4 @@ Thanks for your interest in contributing to Streaks!
 
 If you've found a bug or have a feature request, please open an issue before starting work on large changes.
 
-Thanks for helping improve Streaks! 🎉
+Thanks for helping improve Again! 🎉

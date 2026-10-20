@@ -162,11 +162,11 @@ class SettingsFragment : Fragment() {
     private fun setupClickListeners() {
         binding.btnAddStreak.setOnClickListener { showAddStreakDialog() }
         binding.textPrivacyPolicy.setOnClickListener {
-            openUrl("https://Arihant25.github.io/streaks/privacy-policy.html")
+            openUrl("https://arihant25.github.io/again/privacy-policy.html")
         }
         binding.rowAuthor.setOnClickListener { openUrl("https://arihant25.github.io") }
         binding.rowSourceCode.setOnClickListener {
-            openUrl("https://github.com/Arihant25/streaks")
+            openUrl("https://github.com/Arihant25/again")
         }
     }
 
@@ -253,7 +253,7 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupExportImportButtons() {
-        binding.btnExportData.setOnClickListener { exportLauncher.launch("streaks_export.json") }
+        binding.btnExportData.setOnClickListener { exportLauncher.launch("again_export.json") }
         binding.btnImportData.setOnClickListener {
             importLauncher.launch(arrayOf("application/json"))
         }

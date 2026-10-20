@@ -696,7 +696,7 @@ class HomeFragment : Fragment() {
 
         paint.textSize = 44f
         paint.alpha = 200
-        canvas.drawText("Tracked with Streaks 🔥", size / 2f, 990f, paint)
+        canvas.drawText("Tracked with Again 🔥", size / 2f, 990f, paint)
 
         return bitmap
     }

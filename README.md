@@ -1,6 +1,6 @@
-# Streaks - Habit Tracking App
+# Again - Habit Tracking App
 
-Streaks is an Android application designed to help users build and maintain positive habits through streak tracking. The app provides a clean, intuitive interface for tracking daily, weekly, monthly, and yearly habits with visual progress indicators and customizable reminders.
+Again (formerly Streaks) is an Android application designed to help users build and maintain positive habits through streak tracking. The app provides a clean, intuitive interface for tracking daily, weekly, monthly, and yearly habits with visual progress indicators and customizable reminders.
 
 **🔒 Privacy First: All your habit data stays securely on your device - no cloud storage, no data collection, no tracking.**
 

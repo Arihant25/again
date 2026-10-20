@@ -19,8 +19,8 @@ android {
         applicationId = "com.arihant.streaks"
         minSdk = 31
         targetSdk = 37
-        versionCode = 10
-        versionName = "2.4"
+        versionCode = 11
+        versionName = "2.5"
     }
 
     signingConfigs {
