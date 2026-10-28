@@ -17,3 +17,5 @@ app/release/
 local.properties
 
 my-release-key.jks
+
+.idea/

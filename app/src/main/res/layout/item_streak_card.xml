@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -21,6 +22,7 @@
         android:padding="16dp">
 
         <!-- Emoji chip (background tinted with the streak's color in the adapter) -->
+
         <TextView
             android:id="@+id/emoji_icon"
             android:layout_width="48dp"
@@ -37,31 +39,50 @@
             android:id="@+id/streak_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Daily Run"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
-            app:layout_constraintStart_toEndOf="@id/emoji_icon"
+            android:text="Daily Run"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/completion_circle"
+            app:layout_constraintStart_toEndOf="@id/emoji_icon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Streak Count -->
-        <TextView
-            android:id="@+id/streak_count"
+
+        <LinearLayout
+            android:id="@+id/streak_details_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="5 days"
-            android:textSize="14sp"
-            android:textColor="@color/gray_dark"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toEndOf="@id/emoji_icon"
-            app:layout_constraintEnd_toStartOf="@id/completion_circle"
-            app:layout_constraintTop_toBottomOf="@id/streak_name" />
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/pulse_ring"
+            app:layout_constraintStart_toEndOf="@+id/emoji_icon"
+            app:layout_constraintTop_toBottomOf="@+id/streak_name"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/streak_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 days"
+                android:textColor="@color/gray_dark"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/streak_consistency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="100%"
+                android:textColor="@color/gray_dark"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <!-- Pulse ring (bursts outward when a streak is completed) -->
+
         <View
             android:id="@+id/pulse_ring"
             android:layout_width="48dp"

@@ -14,6 +14,7 @@ import com.arihant.streaks.data.Streak
 import com.arihant.streaks.databinding.ItemStreakCardBinding
 import com.arihant.streaks.utils.WeekConfig
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 class StreaksAdapter(
         private val onStreakToggled: (String, Boolean, View) -> Unit,
@@ -127,6 +128,9 @@ class StreaksAdapter(
                                         }
                                 }
                         }
+
+                        val consistencyRate = streak.getFormattedConsistency(FrequencyType.MONTHLY)
+                        binding.streakConsistency.text = "$consistencyRate"
 
                         // Update completion circle
                         binding.completionCircle.isSelected = streak.isCompletedToday

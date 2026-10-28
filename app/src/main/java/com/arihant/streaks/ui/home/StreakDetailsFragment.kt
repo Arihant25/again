@@ -19,6 +19,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.arihant.streaks.R
+import com.arihant.streaks.data.FrequencyType
 import com.arihant.streaks.data.Reminder
 import com.arihant.streaks.data.Streak
 import com.arihant.streaks.databinding.FragmentStreakDetailsBinding
@@ -291,6 +292,9 @@ class StreakDetailsFragment : Fragment() {
 
                 val completions = streak.asLocalDateCompletions()
                 val now = java.time.LocalDate.now()
+
+                val consistencyString = streak.getFormattedConsistency(FrequencyType.MONTHLY)
+
                 row.addView(tile("${completions.size}", "Total"))
                 row.addView(
                         tile(
@@ -299,6 +303,8 @@ class StreakDetailsFragment : Fragment() {
                         )
                 )
                 row.addView(tile("${completions.count { it.year == now.year }}", "This Year"))
+
+                row.addView(tile(consistencyString, "Consistency"))
 
                 parent.addView(row, parent.indexOfChild(binding.yearGraphContainer) + 1)
                 quickStatsRow = row
