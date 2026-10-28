@@ -128,6 +128,9 @@ class StreaksAdapter(
                                 }
                         }
 
+                        val consistencyRate = streak.getFormattedConsistency(FrequencyType.MONTHLY)
+                        binding.streakConsistency.text = "| $consistencyRate"
+
                         // Update completion circle
                         binding.completionCircle.isSelected = streak.isCompletedToday
                         binding.checkIcon.isVisible = streak.isCompletedToday
