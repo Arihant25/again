@@ -39,17 +39,24 @@ data class Streak(
                         FrequencyType.WEEKLY -> 7
                         FrequencyType.MONTHLY -> 30
                         FrequencyType.YEARLY -> 365
-                };
+                }
 
                 val today = LocalDate.now()
                 val created = getCreatedDate()
 
+                val completionDates = asLocalDateCompletions().toSet()
+
+                val earliestCompletion = completionDates.minOrNull()
+                val effectiveStart = if (earliestCompletion != null && created.isAfter(earliestCompletion)) {
+                        earliestCompletion
+                } else {
+                        created
+                }
+
                 // If the streak was created less than 30 days ago,
                 // adjust the window to only cover days since creation.
-                val daysSinceCreation = ChronoUnit.DAYS.between(created, today).toInt() + 1
+                val daysSinceCreation = ChronoUnit.DAYS.between(effectiveStart, today).toInt() + 1
                 val actualWindow = minOf(windowDays, maxOf(1, daysSinceCreation))
-
-                val completionDates = asLocalDateCompletions().toSet()
 
                 var completedCount = 0
                 var validDaysCount = 0
@@ -57,7 +64,7 @@ data class Streak(
                 for (i in 0 until actualWindow) {
                         val targetDate = today.minusDays(i.toLong())
                         // Only count days on or after the streak's creation date
-                        if (!targetDate.isBefore(created)) {
+                        if (!targetDate.isBefore(effectiveStart)) {
                                 validDaysCount++
                                 if (targetDate in completionDates) {
                                         completedCount++

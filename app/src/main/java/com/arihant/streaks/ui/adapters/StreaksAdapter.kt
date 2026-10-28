@@ -14,6 +14,7 @@ import com.arihant.streaks.data.Streak
 import com.arihant.streaks.databinding.ItemStreakCardBinding
 import com.arihant.streaks.utils.WeekConfig
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 class StreaksAdapter(
         private val onStreakToggled: (String, Boolean, View) -> Unit,
