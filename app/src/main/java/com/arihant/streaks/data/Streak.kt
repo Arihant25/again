@@ -3,6 +3,7 @@ package com.arihant.streaks.data
 import android.os.Parcelable
 import java.time.LocalDate
 import kotlinx.parcelize.Parcelize
+import java.time.temporal.ChronoUnit
 
 @Parcelize
 data class Reminder(
@@ -30,6 +31,50 @@ data class Streak(
         fun getCreatedDate(): LocalDate = LocalDate.parse(createdDate)
         fun getLastCompletedDate(): LocalDate? = lastCompletedDate?.let { LocalDate.parse(it) }
         fun asLocalDateCompletions(): List<LocalDate> = completions.map { LocalDate.parse(it) }
+
+        // Calculates consistency percentage over a rolling window
+        fun calculateConsistency(frequency: FrequencyType = FrequencyType.MONTHLY): Float {
+                val windowDays = when (frequency) {
+                        FrequencyType.DAILY -> 1
+                        FrequencyType.WEEKLY -> 7
+                        FrequencyType.MONTHLY -> 30
+                        FrequencyType.YEARLY -> 365
+                };
+
+                val today = LocalDate.now()
+                val created = getCreatedDate()
+
+                // If the streak was created less than 30 days ago,
+                // adjust the window to only cover days since creation.
+                val daysSinceCreation = ChronoUnit.DAYS.between(created, today).toInt() + 1
+                val actualWindow = minOf(windowDays, maxOf(1, daysSinceCreation))
+
+                val completionDates = asLocalDateCompletions().toSet()
+
+                var completedCount = 0
+                var validDaysCount = 0
+
+                for (i in 0 until actualWindow) {
+                        val targetDate = today.minusDays(i.toLong())
+                        // Only count days on or after the streak's creation date
+                        if (!targetDate.isBefore(created)) {
+                                validDaysCount++
+                                if (targetDate in completionDates) {
+                                        completedCount++
+                                }
+                        }
+                }
+
+                if (validDaysCount == 0) return 0f
+                return (completedCount.toFloat() / validDaysCount.toFloat()) * 100f
+        }
+
+        // Returns a formatted string representation of consistency, e.g., "90%"
+        fun getFormattedConsistency(frequency: FrequencyType = FrequencyType.MONTHLY): String {
+                val percentage = calculateConsistency(frequency)
+                // Round to nearest integer or 1 decimal place
+                return "${percentage.toInt()}%"
+        }
 }
 
 @Parcelize
